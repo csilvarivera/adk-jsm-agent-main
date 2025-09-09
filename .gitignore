@@ -1,0 +1,15 @@
+# Python builds
+dist/**
+
+# Python caching
+**/__pycache__/**
+
+# Coverage data
+.coverage
+coverage.xml
+
+# Local environment
+.env
+.agentengine.env
+.agentspace_agent.env
+

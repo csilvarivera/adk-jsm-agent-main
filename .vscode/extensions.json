@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"ms-python.python",      // Official Python extension from Microsoft
+		"ms-python.pylance",     // Provides Pyright type checking and smart code completion
+		"charliermarsh.ruff"     // Fast linter and formatter
+	]
+}

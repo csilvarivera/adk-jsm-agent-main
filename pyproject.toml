@@ -1,0 +1,74 @@
+[project]
+name = "adk_jsm_agent"
+version = "0.1.0"
+description = "Sample ADK for Jira Service Management"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "google-adk>=1.11.0",
+    "google-cloud-aiplatform[adk,agent-engines]>=1.110.0",
+    "google-cloud-logging>=3.12.1",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.1.1",
+    "python-json-logger>=3.3.0",
+    "requests>=2.32.5",
+    "typer>=0.17.3",
+]
+
+# TODO: Update
+# license = "Apache-2.0"
+# license-files = ["LICENSE"]
+authors = [
+  { name = "Mark Scannell", email = "scannell@google.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.scripts]
+agentengine_manage = "adk_jsm_agent.tools.agentengine_manage:app"
+agentspace_manage = "adk_jsm_agent.tools.agentspace_manage:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["adk_jsm_agent"]
+
+[tool.ruff]
+line-length = 120
+lint.select = ["ALL"]
+lint.ignore = [
+  "D213",
+  "D203",
+  "S101",
+]
+lint.fixable = ["ALL"]
+
+[tool.basedpyright]
+venvPath = "."
+venv = ".venv"
+include = ["adk_jsm_agent", "tests"]
+reportMissingImports = true
+reportExplicitAny = false
+reportAny = false
+reportCallInDefaultInitializer = false
+reportImplicitStringConcatenation = false
+
+[tool.uv]
+dev-dependencies = [
+    "pytest-md>=0.2.0",
+    "pytest>=8.3.4",
+    "ruff>=0.9.6",
+    "pre-commit",
+    "mkdocs>=1.6.1",
+    "pytest-cov>=6.2.1",
+    "python-dotenv>=1.1.1",
+    "basedpyright>=1.31.3",
+]
+
+[tool.uv.sources]
+# TODO: Remove this once adk-python is released supporting audience with OAuth
+google-adk = { path = "/usr/local/google/home/scannell/github/adk-python", editable = true }

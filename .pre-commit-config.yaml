@@ -1,0 +1,57 @@
+repos:
+
+# Lock the versions
+- repo: https://github.com/astral-sh/uv-pre-commit
+  rev: 0.5.21
+  hooks:
+    - id: uv-lock
+
+# Sync the versions (checkout only)
+- repo: https://github.com/astral-sh/uv-pre-commit
+  rev: 0.5.21
+  hooks:
+    - id: uv-sync
+      args:
+        - --all-extras
+        - --dev
+
+# Check license headers and white space vs tabs
+- repo: https://github.com/Lucas-C/pre-commit-hooks
+  rev: v1.5.5
+  hooks:
+    - id: forbid-tabs
+      files: .py$
+    - id: remove-tabs
+      files: .py$
+      args: [--whitespaces-count, '2']  # defaults to: 4
+    # TODO: Add license header
+    # - id: insert-license
+    #   files: .py$
+    #   args:
+    #     - --license-filepath
+    #     - docs/LICENSE_HEADER.txt # defaults to: LICENSE.txt
+    #     - --no-extra-eol          # see below
+
+# Local checks
+- repo: local
+  hooks:
+    - id: basedpyright
+      name: basedpyright
+      entry: .venv/bin/basedpyright -p . -v .
+      pass_filenames: true
+      files: .py$
+      language: python
+    - id: ruff
+      name: ruff
+      entry: .venv/bin/ruff
+      args: [ check, --fix ]
+      pass_filenames: true
+      files: .py$
+      language: python
+    - id: ruff-format
+      name: ruff-format
+      entry: .venv/bin/ruff
+      args: [ format ]
+      pass_filenames: true
+      files: .py$
+      language: python

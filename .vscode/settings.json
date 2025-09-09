@@ -1,0 +1,19 @@
+{
+    // Add this line to explicitly point to the project's virtual environment
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+    // --- General Python settings ---
+    "python.languageServer": "None",
+
+    // --- Disable common Python linters ---
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": false,
+    "python.linting.enabled": true,
+
+    // --- Ruff configuration ---
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": "explicit"
+    },
+}
